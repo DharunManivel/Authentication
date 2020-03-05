@@ -1,0 +1,77 @@
+buildscript {
+
+//	dependencies {
+//		classpath 'org.akhikhl.gretty:gretty:+'
+//	}
+}
+
+plugins {
+    id 'org.springframework.boot' version '2.2.5.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+    id 'java'
+}
+
+apply plugin: 'war'
+//apply plugin: 'org.akhikhl.gretty'
+group = 'com.ssb'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    compileOnly 'org.projectlombok:lombok'
+    //JSON WEB TOKEN
+    compile group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
+
+    //String Utils
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.9'
+
+
+    runtimeOnly 'mysql:mysql-connector-java'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+    testImplementation 'org.springframework.security:spring-security-test'
+
+
+}
+
+//gretty {
+//	jvmArgs = ['-Dspring.profiles.active=dev']
+//	jacocoEnabled = false
+//	contextPath = '/'
+//	loggingLevel = 'ERROR'
+//	servletContainer =  'tomcat8'
+//	fileLogEnabled =false
+//	reloadOnLibChange = false
+//	reloadOnConfigChange = false
+//	reloadOnClassChange = false
+//	fastReload = true
+//	inplaceMode = "hard"
+//
+//}
+
+// For Gretty Tasks
+//project.afterEvaluate {
+//	tasks.appRun.dependsOn versionTxt
+//	tasks.appStart.dependsOn versionTxt
+//}
+
+test {
+    useJUnitPlatform()
+}
