@@ -36,6 +36,7 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
     //JSON WEB TOKEN
     compile group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
+    compile("com.auth0:java-jwt:3.4.0")
 
     //String Utils
     compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.9'
